@@ -6,7 +6,7 @@ import { assets } from '../assets/assets';
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = React.useState(false);
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-    const { user, setUser, setShowUserLogin, navigate, setSearchQuery, searchQuery } = useAppContext();
+    const { user, setUser, setShowUserLogin, navigate, setSearchQuery, searchQuery, getCartCount } = useAppContext();
 
     React.useEffect(() => {
         const handleScroll = () => {
@@ -73,7 +73,7 @@ const Navbar = () => {
             {/* Cart Icon */}
             <div onClick={() => navigate("/cart")} className={`hidden lg:flex    relative cursor-pointer md:block ${isMenuOpen ? 'hidden' : ''}`}>
                 <img src={assets.nav_cart_icon} alt="cart" className='w-6 opacity-80' />
-                <button className="absolute -top-2 -right-3 text-xs text-white bg-indigo-500 w-[18px] h-[18px] rounded-full">3</button>
+                <button className="absolute -top-2 -right-3 text-xs text-white bg-indigo-500 w-[18px] h-[18px] rounded-full">{getCartCount()}</button>
             </div>
 
             {/* Login/Profile */}
@@ -103,6 +103,7 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Menu */}
+            
             <div className={`fixed top-0 left-0 w-full h-screen bg-white text-base flex flex-col md:hidden items-center justify-center gap-6 font-medium text-gray-800 transition-all duration-500 ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}`}>
                 <button className="absolute top-4 right-4" onClick={() => setIsMenuOpen(false)}>
                     <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
