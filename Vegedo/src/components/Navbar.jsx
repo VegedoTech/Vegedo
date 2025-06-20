@@ -92,6 +92,13 @@ const Navbar = () => {
                     </div>
                 )}
             </div>
+            {/* Cart Icon - Mobile only */}
+            <div onClick={() => navigate("/cart")} className="flex lg:hidden relative cursor-pointer ml-auto mr-15">
+                <img src={assets.nav_cart_icon} alt="cart" className='w-6 opacity-80' />
+                <button className="absolute -top-2 -right-3 text-xs text-white bg-indigo-500 w-[18px] h-[18px] rounded-full">
+                    {getCartCount()}
+                </button>
+            </div>
 
             {/* Mobile Menu Button */}
             <div className="flex items-center gap-3 md:hidden">
