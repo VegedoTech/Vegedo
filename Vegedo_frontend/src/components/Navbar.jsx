@@ -37,8 +37,9 @@ const Navbar = () => {
     return (
         <nav className={`fixed top-0 left-0 w-full flex items-center justify-between px-4 md:px-16 lg:px-24 xl:px-32 transition-all duration-500 z-50 
   ${isScrolled 
-    ? "bg-white bg-opacity-95 shadow-lg backdrop-blur-lg py-3 md:py-4 text-gray-800" 
+    ? "bg-white/80 shadow-xl backdrop-blur-lg border-b border-gray-200 py-3 md:py-4 text-gray-800" 
     : "bg-primary py-4 md:py-6 text-white"}`}>
+
 
             {/* Logo */}
             <NavLink to='/' onClick={() => setIsMenuOpen(false)}>
@@ -48,14 +49,26 @@ const Navbar = () => {
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-4 lg:gap-8">
                 {navLinks.map((link, i) => (
-                    <NavLink key={i} to={link.path} className={`group flex flex-col gap-0.5 ${isScrolled ? "text-gray-700" : "text-white"}`}>
+                    <NavLink key={i} to={link.path} className={`group flex flex-col gap-0.5 ${isScrolled ? "text-gray-700" : "text-white"} hover:text-slate-900 hover:drop-shadow-md transition-all duration-300
+`}>
                         {link.name}
                         <div className={`${isScrolled ? "bg-gray-700" : "bg-white"} h-0.5 w-0 group-hover:w-full transition-all duration-300`} />
                     </NavLink>
                 ))}
-                {user &&
-                    <NavLink to='/products' className={`group flex flex-col gap-0.5 ${isScrolled ? "text-gray-700" : "text-white"}`} onClick={() => setIsMenuOpen(false)}>My Orders</NavLink>
-                }
+{user && (
+  <NavLink
+    to="/products"
+    onClick={() => setIsMenuOpen(false)}
+    className={`group flex flex-col items-start gap-0.5 transition-colors duration-300 ${
+      isScrolled ? "text-gray-800" : "text-white"
+    } hover:text-black`}
+  >
+    <span className="transition-colors duration-300">My Orders</span>
+    <span className="block h-0.5 w-0 group-hover:w-full bg-white transition-all duration-300"></span>
+  </NavLink>
+)}
+
+
             </div>
 
             {/* Search Bar */}
@@ -71,15 +84,19 @@ const Navbar = () => {
             </div>
 
             {/* Cart Icon */}
-            <div onClick={() => navigate("/cart")} className={`hidden lg:flex    relative cursor-pointer md:block ${isMenuOpen ? 'hidden' : ''}`}>
+            <div onClick={() => navigate("/cart")} className={`hidden lg:flex    relative cursor-pointer md:block ${isMenuOpen ? 'hidden' : ''} animate-fadeIn`}>
                 <img src={assets.nav_cart_icon} alt="cart" className='w-6 opacity-80' />
-                <button className="absolute -top-2 -right-3 text-xs text-white bg-indigo-500 w-[18px] h-[18px] rounded-full">{getCartCount()}</button>
+                <button className="absolute -top-2 -right-3 text-xs text-white bg-black w-[18px] h-[18px] rounded-full">{getCartCount()}</button>
             </div>
 
             {/* Login/Profile */}
             <div className="hidden md:flex items-center gap-4">
                 {!user ? (
-                    <button onClick={() => { setShowUserLogin(true) }} className="bg-black text-white cursor-pointer px-8 py-2.5 rounded-full ml-4 transition-all duration-500">
+                    <button onClick={() => { setShowUserLogin(true) }} className="bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold px-6 py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300"
+
+
+
+>
                         Login
                     </button>
                 ) : (
@@ -95,7 +112,7 @@ const Navbar = () => {
             {/* Cart Icon - Mobile only */}
             <div onClick={() => navigate("/cart")} className="flex lg:hidden relative cursor-pointer ml-auto mr-15">
                 <img src={assets.nav_cart_icon} alt="cart" className='w-6 opacity-80' />
-                <button className="absolute -top-2 -right-3 text-xs text-white bg-indigo-500 w-[18px] h-[18px] rounded-full">
+                <button className="absolute -top-2 -right-3 text-xs text-white bg-black w-[18px] h-[18px] rounded-full">
                     {getCartCount()}
                 </button>
             </div>
@@ -111,7 +128,7 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             
-            <div className={`fixed top-0 left-0 w-full h-screen bg-white text-base flex flex-col md:hidden items-center justify-center gap-6 font-medium text-gray-800 transition-all duration-500 ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}`}>
+            <div className={`fixed top-0 left-0 w-full h-screen bg-white text-base flex flex-col md:hidden items-center justify-center gap-6 font-medium text-gray-800 transform transition-transform duration-500 ease-in-out ${isMenuOpen ? "translate-x-0 opacity-100 scale-100" : "-translate-x-full opacity-0 scale-90 z-50"}`}>
                 <button className="absolute top-4 right-4" onClick={() => setIsMenuOpen(false)}>
                     <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <line x1="18" y1="6" x2="6" y2="18" />
@@ -125,7 +142,7 @@ const Navbar = () => {
                     </NavLink>
                 ))}
                 {user &&
-                    <NavLink to='/products' onClick={() => setIsMenuOpen(false)}>My Orders</NavLink>
+                    <NavLink to='/products'  onClick={() => setIsMenuOpen(false)}>My Orders</NavLink>
                 }
                 {!user ? (
                     <button
