@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
 import { assets } from '../assets/assets';
 
+
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = React.useState(false);
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -43,7 +44,7 @@ const Navbar = () => {
 
             {/* Logo */}
             <NavLink to='/' onClick={() => setIsMenuOpen(false)}>
-                <img src={""} alt="" className={`h-9 ${isScrolled && "invert opacity-80"}`} />
+                <img src={assets.vegedologo} alt="" className={`h-18 text-black w-60 ${isScrolled && "invert opacity-80"}`} />
             </NavLink>
 
             {/* Desktop Nav */}
@@ -57,7 +58,7 @@ const Navbar = () => {
                 ))}
 {user && (
   <NavLink
-    to="/products"
+    to="/my-orders"
     onClick={() => setIsMenuOpen(false)}
     className={`group flex flex-col items-start gap-0.5 transition-colors duration-300 ${
       isScrolled ? "text-gray-800" : "text-white"
@@ -92,7 +93,7 @@ const Navbar = () => {
             {/* Login/Profile */}
             <div className="hidden md:flex items-center gap-4">
                 {!user ? (
-                    <button onClick={() => { setShowUserLogin(true) }} className="bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold px-6 py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300"
+                    <button onClick={() => { setShowUserLogin(true) }} className="bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold px-6 py-2 rounded-full shadow-md hover:shadow-lg transition-all cursor-pointer duration-300"
 
 
 
@@ -150,7 +151,7 @@ const Navbar = () => {
                             setIsMenuOpen(false)
                             setShowUserLogin(true)
                         }}
-                        className="bg-black text-white px-8 py-2.5 rounded-full transition-all duration-500">
+                        className="bg-black cursor-pointer text-white px-8 py-2.5 rounded-full transition-all duration-500">
                         Login
                     </button>
                 ) : (
