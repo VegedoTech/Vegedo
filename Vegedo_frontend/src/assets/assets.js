@@ -4,7 +4,7 @@ import remove_icon from "./remove_icon.svg";
 import arrow_right_icon_colored from "./arrow_right_icon_colored.svg";
 import star_icon from "./star_icon.svg";
 import star_dull_icon from "./star_dull_icon.svg";
-import vegedologo from "./vegedologo-removebg-preview.png"
+import vegedologo from "./vegedo.png"
 import cart_icon from "./cart_icon.svg";
 import nav_cart_icon from "./nav_cart_icon.svg";
 import add_icon from "./add_icon.svg";
@@ -154,7 +154,7 @@ export const footerLinks = [
       { text: "Home", url: "#" },
       { text: "Best Sellers", url: "#" },
       { text: "Offers & Deals", url: "#" },
-      { text: "Contact Us", url: "#" },
+      { text: "Contact Us", url: "/contact" },
       { text: "FAQs", url: "#" },
     ],
   },
@@ -165,7 +165,7 @@ export const footerLinks = [
       { text: "Return & Refund Policy", url: "#" },
       { text: "Payment Methods", url: "#" },
       { text: "Track your Order", url: "#" },
-      { text: "Contact Us", url: "#" },
+      { text: "Contact Us", url: "/contact" },
     ],
   },
   {

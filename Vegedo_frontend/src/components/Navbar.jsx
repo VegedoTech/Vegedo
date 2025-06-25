@@ -31,8 +31,8 @@ const Navbar = () => {
     const navLinks = [
         { name: 'Home', path: '/' },
         { name: 'All products', path: '/products' },
-        { name: 'Contact', path: '/' },
-        { name: 'About', path: '/' },
+        { name: 'Contact', path: '/contact' },
+        { name: 'About', path: '/about' },
     ];
 
     return (
@@ -44,7 +44,7 @@ const Navbar = () => {
 
             {/* Logo */}
             <NavLink to='/' onClick={() => setIsMenuOpen(false)}>
-                <img src={assets.vegedologo} alt="" className={`h-18 text-black w-60 ${isScrolled && "invert opacity-80"}`} />
+                <img src={assets.vegedologo} alt="" className={`h-15 text-black w-50 ${isScrolled && "invert opacity-80"}`} />
             </NavLink>
 
             {/* Desktop Nav */}

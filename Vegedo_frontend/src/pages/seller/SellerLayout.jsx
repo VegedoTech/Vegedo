@@ -4,7 +4,7 @@ import { useAppContext } from "../../context/AppContext";
 
 const SellerLayout = () => {
 
-    const {setIsseller} = useAppContext()
+    const {setIsSeller} = useAppContext()
 
 
 
@@ -16,17 +16,17 @@ const SellerLayout = () => {
         { name: "Orders", path: "/seller/orders", icon: assets.order_icon},
     ];
     const logout = async()=>{
-        setIsseller(false)
+        setIsSeller(false)
     }
     return (
         <>
             <div className="flex items-center justify-between px-4 md:px-8 border-b border-gray-300 py-3 bg-white transition-all duration-300">
                 <Link to='/'>
-                    <img className="cursor-pointer w-34 md:w-38" src="" alt="logo" />
+                    <img className="cursor-pointer w-34 md:w-38" src={assets.vegedologo} alt="logo" />
                 </Link>
                 <div className="flex items-center gap-5 text-gray-500">
                     <p>Hello! Mr.Seller</p>
-                    <button onClick={logout} className='border rounded-full text-sm px-4 py-1'>Logout</button>
+                    <button onClick={logout} className='border cursor-pointer rounded-full text-sm px-4 py-1'>Logout</button>
                 </div>
             </div>
             <div className="flex">
