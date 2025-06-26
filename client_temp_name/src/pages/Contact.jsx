@@ -73,7 +73,7 @@ const Contact = () => {
               <p className="mt-2">📍 Pant Nagar, Saharanpur, Uttar Pradesh</p>
               <p>📞 +91 7078149204</p>
               <p className='pl-6.5'>+91 9027991613</p>
-              <p>📧 support@vegedo.com</p>
+              <p>📧 vegedo@gmail.com</p>
             </div>
 
             <div>
