@@ -100,6 +100,6 @@ vegedo/
 
 | Name           | GitHub Username                            | Role                   |
 |----------------|---------------------------------------------|------------------------|
-| Shiven Garg    | [@shiven-garg](https://github.com/shiven-garg) | Frontend & UI/UX Design |
-| Ayush Sharma   | [@ayush-sharma](https://github.com/ayush-sharma) | Backend |
+| Shiven Garg    | [@shiven-garg](https://github.com/Shiven20) | Frontend & UI/UX Design |
+| Ayush Joshi    | [@ayush-joshi](https://github.com/ayushjoshicodes) | Backend |
 
