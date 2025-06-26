@@ -33,7 +33,7 @@
 
 ```bash
 git clone https://github.com/your-username/vegedo.git
-cd vegedo_frontend
+cd Client
 npm install
 npm start
 ```
