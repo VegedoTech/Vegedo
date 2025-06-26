@@ -96,4 +96,10 @@ vegedo/
 ### 📦 Orders Page
 ![Orders Page](https://github.com/user-attachments/assets/9163500f-1066-4429-8371-32d67789f215)
 
+## 👨‍💻 Contributors
+
+| Name           | GitHub Username                            | Role                   |
+|----------------|---------------------------------------------|------------------------|
+| Shiven Garg    | [@shiven-garg](https://github.com/shiven-garg) | Frontend & UI/UX Design |
+| Ayush Sharma   | [@ayush-sharma](https://github.com/ayush-sharma) | Backend |
 
