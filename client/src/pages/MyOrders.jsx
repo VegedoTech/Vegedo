@@ -1,19 +1,34 @@
 import React, { useEffect, useState } from 'react'
 import { useAppContext } from '../context/AppContext'
 import { dummyOrders } from '../assets/assets'
+import toast from 'react-hot-toast'
+
 
 const MyOrders = () => {
 
     const [myOrders,setMyOrders] = useState([])
-    const {currency} = useAppContext()
+    const {user,currency, axios} = useAppContext()
 
-    const fetchMyOrders = async()=>{
-        setMyOrders(dummyOrders)
-    }
+    const fetchMyOrders = async () => {
+      try {
+        const { data } = await axios.get("/api/order/user");
+
+        if (data.success) {
+          setMyOrders(data.orders); // assuming you have a setOrders() state setter
+        } else {
+          toast.error(data.message || "Failed to fetch orders");
+        }
+      } catch (error) {
+        toast.error(
+          error.message || "Something went wrong while fetching orders"
+        );
+      }
+    };
+
 
     useEffect(()=>{
-        fetchMyOrders()
-    },[])
+        if(user){fetchMyOrders()}
+    },[user])
 
   return (
     <div className='mt-16 pb-16 pt-20'>
@@ -45,7 +60,7 @@ const MyOrders = () => {
                         <div className='flex flex-col justify-center md:ml-8 wb-4 md:mb-0'>
                             <p>Quantity: {item.quantity || "1"}</p>
                             <p>Status: {order.status}</p>
-                            <p>Date:{new Date(order.createAt).toLocaleDateString()}</p>
+                            <p>Date:{new Date(order.createdAt).toLocaleDateString()}</p>
                         </div>
                         <p className='text-primary text-lg font-medium'>
                             Amount: {currency}{item.product.offerPrice * item.quantity}

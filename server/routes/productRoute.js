@@ -12,15 +12,15 @@ import sellerAuth from "../middlewares/authSeller.js"; // optional for protectin
 const productRouter = express.Router();
 
 // POST /api/products/add - Add product with image upload (protected route)
-productRouter.post("/add", sellerAuth, upload.array("image"), addProduct);
+productRouter.post("/add", sellerAuth, upload.array("images"), addProduct);
 
 // GET /api/products/list - Get all products
-productRouter.get("/list", productList);
+productRouter.get("/all", productList);
 
 // GET /api/products/:id - Get product by ID
 productRouter.get("/:id", productById);
 
 // PUT /api/products/stock/:id - Update stock status
-productRouter.put("/stock/:id", sellerAuth, changeStock);
+productRouter.post("/stock", sellerAuth, changeStock);
 
 export default productRouter;

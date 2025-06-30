@@ -1,10 +1,13 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { assets } from "../../assets/assets";
 import { useAppContext } from "../../context/AppContext";
+import toast from "react-hot-toast";
+
+
 
 const SellerLayout = () => {
 
-    const {setIsSeller} = useAppContext()
+    const {setIsSeller ,axios ,navigate} = useAppContext()
 
 
 
@@ -15,9 +18,22 @@ const SellerLayout = () => {
         { name: "Product List", path: "/seller/product-list", icon: assets.product_list_icon },
         { name: "Orders", path: "/seller/orders", icon: assets.order_icon},
     ];
-    const logout = async()=>{
-        setIsSeller(false)
-    }
+    const logout = async () => {
+      try {
+        const { data } = await axios.get("/api/seller/logout");
+
+        if (data.success) {
+          // Clear any seller state if maintained
+          setIsSeller(false); // Assuming you use this
+          toast.success("Logged out successfully");
+          navigate("/"); // Or redirect to your desired page
+        } else {
+          toast.error(data.message || "Logout failed");
+        }
+      } catch (error) {
+        toast.error(error.response?.data?.message || error.message);
+      }
+    };
     return (
         <>
             <div className="flex items-center justify-between px-4 md:px-8 border-b border-gray-300 py-3 bg-white transition-all duration-300">

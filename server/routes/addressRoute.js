@@ -8,6 +8,6 @@ const addressRouter = express.Router();
 addressRouter.post("/add", authUser, addAddress);
 
 // Get Addresses for a User
-addressRouter.post("/get", authUser, getAddress);
+addressRouter.get("/get", authUser, getAddress);
 
 export default addressRouter;

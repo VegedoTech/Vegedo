@@ -41,7 +41,8 @@ const register = async (req, res) => {
     });
 
     // Send response
-    res.status(201).json({
+    return res.status(201).json({
+      success: true,
       message: "User registered successfully",
       user: {
         id: newUser._id,
@@ -59,16 +60,20 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-
+    
+    
     // Check if user exists
     const user = await User.findOne({ email });
-    if (!user)
-      return res.status(400).json({ message: 'Invalid email or password' });
-
+    if (!user){
+      //console.log("inlogin");
+      return res.status(400).json({success: false,  message: 'Invalid email or password' });
+    }
     // Compare password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch)
-      return res.status(400).json({ message: 'Invalid email or password' });
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid email or password" });
 
     // Generate JWT
     const token = jwt.sign(
@@ -87,6 +92,7 @@ const login = async (req, res) => {
 
     // Send response
     res.status(200).json({
+      success: true,
       message: 'Login successful',
       user: {
         id: user._id,
@@ -96,14 +102,15 @@ const login = async (req, res) => {
     });
   } catch (error) {
     console.error('Login error:', error.message);
-    res.status(500).json({ message: 'Internal server error much' });
+    res.status(500).json({ success:false ,message: 'Internal server error much' });
   }
 };
 
 
  const isAuth = async (req, res) => {
   try {
-    const { userId }= req;
+    const { userId }= req.body;
+   //console.log(userId);
    
     if (!userId) {
       return res
@@ -118,7 +125,8 @@ const login = async (req, res) => {
         .status(404)
         .json({ success: false, message: "User not found" });
     }
-
+    console.log("finally authenticated");
+    
     res.status(200).json({ success: true, user });
   } catch (error) {
     res.status(500).json({ success: false, message: "failed bro"});

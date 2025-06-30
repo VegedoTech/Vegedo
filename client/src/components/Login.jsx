@@ -1,10 +1,12 @@
 import React from 'react'
 import { useAppContext } from '../context/AppContext';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
     
 
 const Login = () => {
-    const {setShowUserLogin,setUser} =useAppContext()
+    const {setShowUserLogin,setUser , navigate} =useAppContext()
     
 
     const [state, setState] = React.useState("login");
@@ -12,14 +14,38 @@ const Login = () => {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
 
-    const onSubmitHandler= async(event)=>{
+    const onSubmitHandler = async (event) => {
+      
+
+      try {
         event.preventDefault();
-        setUser({
-            email: "Shiven@gmail.com",
-            name:"Shiven"
-        }) 
-        setShowUserLogin(false)
-    }
+        const { data } = await axios.post(`/api/user/${state}`, {
+          name,
+          email,
+          password,
+        });
+
+        console.log(data);
+        
+
+        if (data.success === true) {
+          toast.success(data.message);
+          
+           
+          setUser(data.user)
+          setShowUserLogin(false); // Hide login modal/form
+          navigate("/"); // Navigate to user dashboard or homepage
+
+        } else if (data.success) {
+
+          toast.error(data.message);
+
+        }
+      } catch (error) {
+        
+        toast.error(error.response?.data.message);
+      }
+    };
 
   return (
     <div onSubmit={onSubmitHandler} onClick={()=> setShowUserLogin(false)}  className='fixed top-0 bottom-0 left-0 right-0 z-30 flex items-center text-sm text-gray-600 bg-black/50'>

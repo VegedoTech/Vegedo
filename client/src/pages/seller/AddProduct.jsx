@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { assets, categories } from "../../assets/assets";
+import toast from "react-hot-toast";
+import { useAppContext } from "../../context/AppContext";
+
+
+
 
 const AddProduct = () => {
+    const { axios, navigate } = useAppContext();
 
     const [files,setFiles] =useState([])
     const [name,setName] =useState('')
@@ -10,9 +16,47 @@ const AddProduct = () => {
     const [price,setPrice] =useState('')
     const [offerPrice,setOfferPrice] =useState('')
 
-  const onSubmitHandler = async(e)=>{
-    e.preventDefault()
-  }
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Assuming you're using state to hold form values
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("price", price);
+      formData.append("offerPrice", offerPrice);
+      formData.append("category", category);
+      
+      formData.append("description", description.split('\n'));
+      for(let i =0;i<files.length;i++){
+        formData.append('images',files[i]);
+      }
+
+      const { data } = await axios.post("/api/product/add", formData
+        // ,
+        //  {
+        // headers: {
+        //   "Content-Type": "multipart/form-data",
+        // },
+      //}
+    );
+
+      if (data.success) {
+        toast.success("Product added successfully");
+        setName("");
+        setDescription("");
+        setCategory("");
+        setPrice("");
+        setOfferPrice("");
+        setFiles([]); // Clear selected files
+       // navigate("/seller/products"); // Change as per your route
+      } else {
+        toast.error(data.message || "Failed to add product");
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || error.message);
+    }
+  };
 
     return (
         <div className="no-scrollbar flex-1 h-[95vh] overflow-y-scroll flex flex-col justify-between ">

@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
 import { assets } from '../assets/assets';
+import toast from 'react-hot-toast';
+import axios from 'axios';
+
 
 
 const Navbar = () => {
@@ -18,8 +21,21 @@ const Navbar = () => {
     }, []);
 
     const logout = async () => {
-        setUser(null);
-        navigate('/');
+        const {data} = await axios.get('/api/user/logout');
+
+       try{ if(data.success){
+            toast.success(data.message)
+             setUser(null);
+            navigate("/");
+        }
+        else{
+            toast.error("error")
+        }
+        }catch(error){
+            toast.error("error");
+        }
+       
+        
     };
 
     useEffect(()=>{

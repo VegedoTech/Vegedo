@@ -22,9 +22,51 @@ export const AppContextProvider = ({children})=>{
     const [cartItems,setCartItems] = useState({})
     const [searchQuery, setSearchQuery] = useState({})
 
-    const fetchproducts= async ()=>{
-        setProducts(dummyProducts)
-    }
+    const fetchSeller = async () => {
+      try {
+        const { data } = await axios.get("api/seller/is-auth");
+        if (data.success) {
+          setIsSeller(true);
+          
+          
+        } else {
+            //console.log("here");
+          setIsSeller(null);
+        }
+      } catch (error) {
+        setIsSeller(null);
+      }
+    };
+
+    const fetchUser = async () => {
+      try {
+        const { data } = await axios.get("/api/user/is-auth");
+        if (data.success) {
+          setUser(data.user);
+          setCartItems(data.user.cartItems);
+        } else {
+          setUser(false);
+        }
+      } catch (error) {
+        setUser(false);
+      }
+    };
+
+    const fetchproducts = async () => {
+      try {
+        const { data } = await axios.get("/api/product/all");
+
+        if (data.success) {
+            setProducts(data.products);
+          console.log("Products fetched:", data.products); // Or setProducts(data.products)
+          return data.products;
+        } else {
+          console.error("Failed to fetch products:", data.message);
+        }
+      } catch (error) {
+        console.error("Error fetching products:", error.message);
+      }
+    };
 
     const addToCart=(itemId)=>{
         let cartData = structuredClone(cartItems)
@@ -86,13 +128,54 @@ export const AppContextProvider = ({children})=>{
     }
 
     useEffect(()=>{
+        fetchUser()
+        fetchSeller()
         fetchproducts()
     },[])
 
-    const value = {navigate,user,setUser,setIsSeller,isSeller,showUserLogin,setShowUserLogin,products,
-    currency,addToCart,updateCartItem,removeFromCart,cartItems,searchQuery,setSearchQuery,getCartAmount,
-    getCartCount , axios
-    }
+    useEffect(() => {
+        
+        
+      const updateCart = async () => {
+        try {
+            
+          const { data } = await axios.post("/api/cart/update", { cartItems });
+            //console.log(data);
+          if (!data.success) {
+            toast.error(data.message);
+          }
+        } catch (error) {
+          toast.error(error.message);
+        }
+      };
+
+      if(user) {
+        updateCart();
+      }
+    }, [cartItems]);
+
+    const value = {
+      navigate,
+      user,
+      setUser,
+      setIsSeller,
+      isSeller,
+      showUserLogin,
+      setShowUserLogin,
+      products,
+      currency,
+      addToCart,
+      updateCartItem,
+      removeFromCart,
+      cartItems,
+      searchQuery,
+      setSearchQuery,
+      getCartAmount,
+      getCartCount,
+      axios,
+      fetchproducts,
+      setCartItems
+    };
 
     return <AppContext.Provider value={value}>
         {children}

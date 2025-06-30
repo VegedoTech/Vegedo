@@ -48,7 +48,7 @@ export const productList = async (req, res) => {
 // GET PRODUCT BY ID
 export const productById = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { id } = req.body;
     const product = await Product.findById(id);
     if (!product)
       return res
@@ -63,8 +63,8 @@ export const productById = async (req, res) => {
 // CHANGE STOCK
 export const changeStock = async (req, res) => {
   try {
-    const { id } = req.params;
-    const { inStock } = req.body;
+    
+    const { id , inStock } = req.body;
 
     const product = await Product.findByIdAndUpdate(
       id,
