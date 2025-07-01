@@ -92,8 +92,6 @@ vegedo/
 ├── README.md
 
 
----
-
 ## ✨ Screenshots
 
 ### 🏠 Home Page
