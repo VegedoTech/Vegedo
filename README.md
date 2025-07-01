@@ -2,6 +2,25 @@
 
 **Vegedo** is a modern online grocery store web application that allows users to browse, search, and purchase groceries, while also providing sellers/admins with a dedicated dashboard to manage products and orders.
 
+## 🚀 Deployment
+
+Vegedo is live! You can explore the app here:
+
+- 🔗 **User Login:** [vegedo user login](https://vegedo.onrender.com)
+- 🛒 **Seller Login:** [vegedo seller login](https://vegedo.onrender.com/seller)
+
+> You can access the seller login page by appending `/seller` to the main URL.
+
+## 🔐 Demo Login Credentials
+
+### 👤 User Login
+- **Email:** `ayush@gmail.com`  
+- **Password:** `admin`
+
+### 🛍️ Seller Login
+- **Email:** `admin@gmail.com`  
+- **Password:** `admin`
+
 ## 🧾 Features
 
 ### 👤 Buyer Dashboard
