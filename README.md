@@ -72,25 +72,7 @@ npm start
 ```
 
 ### 📁 Project Structure 
-vegedo/
-├── public/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   ├── context/
-│   ├── assets/
-│   └── App.jsx
-├── server/
-│   ├── controllers/
-│   ├── models/
-│   ├── routes/
-│   ├── middleware/
-│   ├── config/
-│   ├── index.js
-│   └── package.json      # Backend dependencies
-├── package.json          # Frontend dependencies
-├── README.md
-
+<pre> <code> vegedo/ ├── public/ ├── src/ │ ├── components/ │ ├── pages/ │ ├── context/ │ ├── assets/ │ └── App.jsx ├── server/ │ ├── controllers/ │ ├── models/ │ ├── routes/ │ ├── middleware/ │ ├── config/ │ ├── index.js │ └── package.json # Backend dependencies ├── package.json # Frontend dependencies ├── README.md </code> </pre>
 
 ## ✨ Screenshots
 
