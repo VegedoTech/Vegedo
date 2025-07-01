@@ -43,7 +43,7 @@ Vegedo is live! You can explore the app here:
 - **Frontend**: React.js, Tailwind CSS
 - **State Management**: Context API
 - **Routing**: React Router DOM
-- **Backend**: Express.js node.js mongodb mongoose cloudinary axios Stripe render
+- **Backend**: Express.js, node.js, mongodb, mongoose, cloudinary, axios, Stripe, render
 - **Deployed On**: render
   
 ---
