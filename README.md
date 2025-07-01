@@ -40,19 +40,23 @@ Vegedo is live! You can explore the app here:
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React.js, Tailwind CSS
-- **State Management**: Context API
-- **Routing**: React Router DOM
-- **Backend Framework:** [Express.js](https://expressjs.com/)
+### 💻 Frontend
+- **Library:** [React.js](https://reactjs.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Routing:** [React Router DOM](https://reactrouter.com/)
+- **State Management:** Context API
+
+### 🧠 Backend
 - **Runtime Environment:** [Node.js](https://nodejs.org/)
+- **Framework:** [Express.js](https://expressjs.com/)
 - **Database:** [MongoDB](https://www.mongodb.com/)
-- **ODM (Object Data Modeling):** [Mongoose](https://mongoosejs.com/)
-- **Media Storage & CDN:** [Cloudinary](https://cloudinary.com/)
+- **ODM:** [Mongoose](https://mongoosejs.com/)
+
+### ☁️ Utilities & Integrations
+- **Media Storage:** [Cloudinary](https://cloudinary.com/)
 - **HTTP Client:** [Axios](https://axios-http.com/)
-- **Payment Gateway:** [Stripe](https://stripe.com/)
-- **Deployment Platform:** [Render](https://render.com/)
-
-
+- **Payments:** [Stripe](https://stripe.com/)
+- **Deployment:** [Render](https://render.com/)
   
 ---
 
@@ -68,8 +72,6 @@ npm start
 ```
 
 ### 📁 Project Structure 
-
-```
 vegedo/
 ├── public/
 ├── src/
@@ -78,9 +80,17 @@ vegedo/
 │   ├── context/
 │   ├── assets/
 │   └── App.jsx
-├── package.json
-└── README.md
-```
+├── server/
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── middleware/
+│   ├── config/
+│   ├── index.js
+│   └── package.json      # Backend dependencies
+├── package.json          # Frontend dependencies
+├── README.md
+
 
 ---
 
